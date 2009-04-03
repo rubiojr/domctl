@@ -1,0 +1,52 @@
+#!/usr/bin/ruby
+require 'rubygems'
+require 'ostruct'
+gem 'pangea', '~> 0.1'
+require 'pangea'
+begin
+  require "#{File.join(File.dirname(__FILE__), '../lib/domctl.rb')}"
+rescue
+  require 'domctl'
+end
+require 'yaml'
+
+include Domctl
+
+DOMCTL_COMMANDS = {
+  :locate_domu => {
+    :help => "domctl locate_domu <domU name>",
+    :proc => LocateDomuCommand
+  },
+  :list_running => {
+    :help => "domctl list_running <dom0 node>",
+    :proc => ListRunningCommand
+  },
+  :cluster_nodes => {
+    :help => "domctl cluster_nodes",
+    :proc => ClusterNodesCommand
+  },
+  :show_vifs => {
+    :help => "domctl show_vifs <domU>",
+    :proc => ShowVifsCommand
+  },
+  :version => {
+    :help => "domctl version",
+    :proc => Proc.new { puts Domctl::VERSION_STRING }
+  },
+  :help => {
+    :proc => HelpCommand
+  }
+}
+
+Domctl::Config.validate
+command = ARGV.shift
+if command.nil?
+  puts HelpCommand.class
+  HelpCommand.call 
+  exit 1
+end
+begin
+  DOMCTL_COMMANDS[eval(":#{command}")][:args] = ARGV
+  DOMCTL_COMMANDS[eval(":#{command}")][:proc].call
+rescue Exception => e
+end

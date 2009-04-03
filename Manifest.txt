@@ -1,0 +1,8 @@
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/domctl
+lib/domctl.rb
+lib/domctl/commands.rb
+lib/domctl/config.rb

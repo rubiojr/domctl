@@ -1,0 +1,7 @@
+=== 0.1 / 2009-04-03
+
+* Initial release
+  * locate a domU within a group of Xen host (dom0)
+  * list the running domUs in a given host (dom0)
+  * list the VIFs from a given guest (domU)
+
