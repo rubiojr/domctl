@@ -30,9 +30,13 @@ DOMCTL_COMMANDS = {
     :help => "domctl show_vifs <domU>",
     :proc => ShowVifsCommand
   },
-  :domu_status => {
-    :help => "domctl domu_status <domU>",
-    :proc => DomuStatusCommand
+  :domu_info => {
+    :help => "domctl domu_info <domU>",
+    :proc => DomuInfoCommand
+  },
+  :dom0_info => {
+    :help => "domctl dom0_info <dom0>",
+    :proc => Dom0InfoCommand
   },
   :recent_domus => {
     :help => "domctl recent_domus",

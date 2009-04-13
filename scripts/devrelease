@@ -1,0 +1,4 @@
+#!/bin/sh
+sh scripts/newrelease
+rake publish_dev_gem
+

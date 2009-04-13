@@ -1,8 +1,8 @@
 module Domctl
   ################
-  # domu_status
+  # domu_info
   ################
-  DomuStatusCommand = Proc.new do
+  DomuInfoCommand = Proc.new do
     def print_vm_status(vm)
       puts "Dom ID:            #{vm.domid}"
       puts "Max Mem:           #{Pangea::Util::humanize_bytes(vm.dyn_max_mem)}"
@@ -14,9 +14,9 @@ module Domctl
       puts "  after reboot:      #{vm.actions_after_reboot}"
       puts "  after shutdown:    #{vm.actions_after_shutdown}"
     end
-    args = DOMCTL_COMMANDS[:domu_status][:args][0]
+    args = DOMCTL_COMMANDS[:domu_info][:args][0]
     if args.nil?
-      $stderr.puts DOMCTL_COMMANDS[:domu_status][:help]
+      $stderr.puts DOMCTL_COMMANDS[:domu_info][:help]
       exit 1
     end
     args.strip.chomp!

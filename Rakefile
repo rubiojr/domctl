@@ -14,6 +14,10 @@ Hoe.new('domctl', Domctl::VERSION) do |p|
   p.developer('Sergio Rubio', 'sergio@rubio.name')
 end
 
+task :publish_dev_gem do
+  `scp pkg/*.gem xen-fu.org:~/dev.xen-fu.org/gems/`
+  `ssh xen-fu.org gem generate_index -d /home/rubiojr/dev.xen-fu.org/`
+end
 task :publish_gem do
   `scp pkg/*.gem xen-fu.org:~/gems.xen-fu.org/gems/`
   `ssh xen-fu.org gem generate_index -d /home/rubiojr/gems.xen-fu.org/`
