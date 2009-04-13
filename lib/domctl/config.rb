@@ -37,6 +37,21 @@ module Domctl
       end
     end
 
+    def self.exit_if_not_defined(node)
+      settings = Domctl::Config.cluster_nodes[node]
+      if settings.nil?
+        $stderr.puts "ERROR: Xen host not defined in #{Domctl::Config.config_file}"
+        exit 1
+      end
+    end
+    def self.node_defined?(node)
+      settings = Domctl::Config.cluster_nodes[node]
+      if settings.nil?
+        return false
+      end
+      true
+    end
+
     def self.config_file
       "#{ENV['HOME']}/.domctlrc"
     end

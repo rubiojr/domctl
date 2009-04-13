@@ -3,6 +3,7 @@ require 'rubygems'
 require 'ostruct'
 gem 'pangea', '~> 0.1'
 require 'pangea'
+
 begin
   require "#{File.join(File.dirname(__FILE__), '../lib/domctl.rb')}"
 rescue
@@ -29,6 +30,10 @@ DOMCTL_COMMANDS = {
     :help => "domctl show_vifs <domU>",
     :proc => ShowVifsCommand
   },
+  :domu_status => {
+    :help => "domctl domu_status <domU>",
+    :proc => DomuStatusCommand
+  },
   :version => {
     :help => "domctl version",
     :proc => Proc.new { puts Domctl::VERSION_STRING }
@@ -40,13 +45,17 @@ DOMCTL_COMMANDS = {
 
 Domctl::Config.validate
 command = ARGV.shift
-if command.nil?
-  puts HelpCommand.class
+if command.nil? or DOMCTL_COMMANDS[command.to_sym].nil?
   HelpCommand.call 
   exit 1
 end
 begin
-  DOMCTL_COMMANDS[eval(":#{command}")][:args] = ARGV
-  DOMCTL_COMMANDS[eval(":#{command}")][:proc].call
+  args = ARGV
+  DOMCTL_COMMANDS[command.to_sym][:args] = args
+  DOMCTL_COMMANDS[command.to_sym][:proc].call
 rescue Exception => e
+  if not e.is_a? SystemExit
+    puts e.message
+    puts e.backtrace
+  end
 end
