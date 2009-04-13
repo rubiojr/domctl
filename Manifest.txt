@@ -3,6 +3,15 @@ Manifest.txt
 README.txt
 Rakefile
 bin/domctl
+domctl.gemspec
 lib/domctl.rb
 lib/domctl/commands.rb
+lib/domctl/commands/cluster_nodes.rb
+lib/domctl/commands/domu_status.rb
+lib/domctl/commands/help.rb
+lib/domctl/commands/list_running.rb
+lib/domctl/commands/locate_domu.rb
+lib/domctl/commands/show_vifs.rb
 lib/domctl/config.rb
+script/newrelease
+script/publish_release
