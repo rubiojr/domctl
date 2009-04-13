@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = %q{sergio@rubio.namesergio@rubio.name}
   s.executables = ["domctl"]
   s.extra_rdoc_files = ["History.txt", "Manifest.txt", "README.txt"]
-  s.files = ["History.txt", "Manifest.txt", "README.txt", "Rakefile", "bin/domctl", "domctl.gemspec", "lib/domctl.rb", "lib/domctl/commands.rb", "lib/domctl/commands/cluster_nodes.rb", "lib/domctl/commands/domu_status.rb", "lib/domctl/commands/help.rb", "lib/domctl/commands/list_running.rb", "lib/domctl/commands/locate_domu.rb", "lib/domctl/commands/show_vifs.rb", "lib/domctl/config.rb", "script/newrelease", "script/publish_release"]
+  s.files = ["History.txt", "Manifest.txt", "README.txt", "Rakefile", "bin/domctl", "domctl.gemspec", "lib/domctl.rb", "lib/domctl/commands.rb", "lib/domctl/commands/cluster_nodes.rb", "lib/domctl/commands/domu_status.rb", "lib/domctl/commands/help.rb", "lib/domctl/commands/list_running.rb", "lib/domctl/commands/locate_domu.rb", "lib/domctl/commands/oldest_domus.rb", "lib/domctl/commands/recent_domus.rb", "lib/domctl/commands/show_vifs.rb", "lib/domctl/config.rb", "script/newrelease", "script/publish_release"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/rubiojr/domctl}
   s.rdoc_options = ["--main", "README.txt"]

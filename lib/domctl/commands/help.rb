@@ -4,7 +4,7 @@ module Domctl
   # ##############
   HelpCommand = Proc.new do
   puts """
-  domctl #{Domctl::VERSION_STRING}
+  domctl #{Domctl::VERSION}
 
   Usage: #{File.basename(__FILE__)} command [arguments...]
 
@@ -16,6 +16,8 @@ module Domctl
     locate_domu                   find the dom0 hosting the specified domU
     show_vifs                     list the VIFs from a given domU
     domu_status                   print the DomU status
+    recent_domus                  print the last 10 domus created
+    oldest_domus                  print the first 10 domus created
 
   Type domctl help <command> to get specific command help.
 

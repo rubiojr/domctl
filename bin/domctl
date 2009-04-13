@@ -34,9 +34,17 @@ DOMCTL_COMMANDS = {
     :help => "domctl domu_status <domU>",
     :proc => DomuStatusCommand
   },
+  :recent_domus => {
+    :help => "domctl recent_domus",
+    :proc => RecentDomusCommand
+  },
+  :oldest_domus => {
+    :help => "domctl oldest_domus",
+    :proc => OldestDomusCommand
+  },
   :version => {
     :help => "domctl version",
-    :proc => Proc.new { puts Domctl::VERSION_STRING }
+    :proc => Proc.new { puts Domctl::VERSION }
   },
   :help => {
     :proc => HelpCommand

@@ -12,7 +12,14 @@ module Domctl
         $stderr.puts "domctl config file does not exist.\n"
         $stderr.puts "I have created an example one for you. Configure it first."
         $stderr.puts
-        exit
+        exit 1
+      end
+      yaml = YAML.load_file(self.config_file)
+      if not yaml or yaml['cluster'].nil? or not yaml['cluster'].is_a?(Hash)
+        $stderr.puts
+        $stderr.puts "Invalid config file found.\n"
+        $stderr.puts
+        exit 1
       end
     end
 
@@ -33,6 +40,17 @@ module Domctl
                   }
           }
           YAML.dump(cfg, f)
+        end
+      end
+    end
+
+    def self.each_host
+      cluster_nodes.sort.each do |node, settings|
+        begin
+          h = Pangea::Host.connect(settings['url'], settings['username'], settings['password'])
+          yield h
+        rescue Exception
+          puts "Error connecting to host #{node}. Skipping."
         end
       end
     end
