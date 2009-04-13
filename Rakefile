@@ -11,6 +11,7 @@ Hoe.new('domctl', Domctl::VERSION) do |p|
   p.summary = "Manage a cluster of Xen hosts"
   p.url = "http://github.com/rubiojr/domctl"
   p.remote_rdoc_dir = '' # Release to root
+  p.extra_deps << [ "pangea","~> 0.1" ]
   p.developer('Sergio Rubio', 'sergio@rubio.name')
 end
 
