@@ -7,13 +7,16 @@ domctl.gemspec
 lib/domctl.rb
 lib/domctl/commands.rb
 lib/domctl/commands/cluster_nodes.rb
-lib/domctl/commands/domu_status.rb
+lib/domctl/commands/dom0_info.rb
+lib/domctl/commands/domu_info.rb
 lib/domctl/commands/help.rb
 lib/domctl/commands/list_running.rb
 lib/domctl/commands/locate_domu.rb
+lib/domctl/commands/mem_status.rb
 lib/domctl/commands/oldest_domus.rb
 lib/domctl/commands/recent_domus.rb
 lib/domctl/commands/show_vifs.rb
 lib/domctl/config.rb
+scripts/devrelease
 scripts/newrelease
 scripts/publish_release
