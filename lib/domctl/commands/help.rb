@@ -19,6 +19,7 @@ module Domctl
     dom0_info                     print Dom0 info
     recent_domus                  print the last 10 domus created
     oldest_domus                  print the first 10 domus created
+    mem_status                    print the memory available in a host
 
   Type domctl help <command> to get specific command help.
 

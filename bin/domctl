@@ -14,6 +14,10 @@ require 'yaml'
 include Domctl
 
 DOMCTL_COMMANDS = {
+  :mem_status => {
+    :help => "domctl mem_status [host]",
+    :proc => MemStatusCommand
+  },
   :locate_domu => {
     :help => "domctl locate_domu <domU name>",
     :proc => LocateDomuCommand
