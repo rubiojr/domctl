@@ -12,6 +12,7 @@ Hoe.new('domctl', Domctl::VERSION) do |p|
   p.url = "http://github.com/rubiojr/domctl"
   p.remote_rdoc_dir = '' # Release to root
   p.extra_deps << [ "pangea","~> 0.1" ]
+  p.extra_deps << [ "term-ansicolor",">= 1.0" ]
   p.developer('Sergio Rubio', 'sergio@rubio.name')
 end
 

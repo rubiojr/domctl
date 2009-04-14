@@ -10,7 +10,7 @@ module Domctl
         self.create_sample_config
         $stderr.puts
         $stderr.puts "domctl config file does not exist.\n"
-        $stderr.puts "I have created an example one for you. Configure it first."
+        $stderr.puts "I have created an example one for you (#{config_file}). Configure it first."
         $stderr.puts
         exit 1
       end

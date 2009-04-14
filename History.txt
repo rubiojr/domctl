@@ -5,3 +5,7 @@
   * list the running domUs in a given host (dom0)
   * list the VIFs from a given guest (domU)
 
+=== 0.2 / 2009-04-14
+
+* lots of new commands implemented
+* bug fixes

@@ -32,7 +32,7 @@ DOMCTL_COMMANDS = {
     :proc => LocateDomuCommand
   },
   :list_running => {
-    :help => "domctl list_running <dom0 node>",
+    :help => "domctl list_running <dom0|all>",
     :proc => ListRunningCommand
   },
   :cluster_nodes => {
