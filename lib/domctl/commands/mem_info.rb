@@ -1,9 +1,9 @@
 module Domctl
   ################
-  # mem_status
+  # mem_info
   # ##############
-  MemStatusCommand = Proc.new do
-    node = DOMCTL_COMMANDS[:mem_status][:args][0]
+  MemInfoCommand = Proc.new do
+    node = DOMCTL_COMMANDS[:mem_info][:args][0]
     if node.nil?
       Domctl::Config.each_host do |h|
         puts "#{h.label}:".ljust(30) + "#{Pangea::Util.humanize_bytes(h.metrics.memory_free)} free"

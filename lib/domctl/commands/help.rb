@@ -15,11 +15,13 @@ module Domctl
     list_running                  list all running domUs in the specified dom0
     locate_domu                   find the dom0 hosting the specified domU
     show_vifs                     list the VIFs from a given domU
-    domu_status                   print DomU info
+    domu_info                     print DomU info
     dom0_info                     print Dom0 info
     recent_domus                  print the last 10 domus created
     oldest_domus                  print the first 10 domus created
-    mem_status                    print the memory available in a host
+    mem_info                      print the memory available in a host
+    farm_info                     print statistics from all the Hosts 
+    cpu_utilisation               CPU utilisation from all the Hosts 
 
   Type domctl help <command> to get specific command help.
 

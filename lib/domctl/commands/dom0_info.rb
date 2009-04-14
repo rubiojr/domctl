@@ -12,9 +12,9 @@ module Domctl
       puts "Xen Version:       #{h.software_version['Xen']}"
       puts "Arch:              #{h.software_version['machine']}"
       puts "Kernel Version:    #{h.software_version['release']}"
-      puts "Networks:"
-      h.networks.each do |n|
-        print "  #{n.label}"
+      print "CPUs: "
+      h.cpus.each do |c|
+        print "%.2f  " % (c.utilisation * 100)
       end
       puts
     end

@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 require 'rubygems'
 require 'ostruct'
+require 'term/ansicolor'
 gem 'pangea', '~> 0.1'
 require 'pangea'
 
@@ -14,9 +15,17 @@ require 'yaml'
 include Domctl
 
 DOMCTL_COMMANDS = {
-  :mem_status => {
-    :help => "domctl mem_status [host]",
-    :proc => MemStatusCommand
+  :cpu_utilisation => {
+    :help => "domctl cpu_utilisation",
+    :proc => CpuUtilisationCommand
+  },
+  :farm_info => {
+    :help => "domctl farm_info",
+    :proc => FarmInfoCommand
+  },
+  :mem_info => {
+    :help => "domctl mem_info [host]",
+    :proc => MemInfoCommand
   },
   :locate_domu => {
     :help => "domctl locate_domu <domU name>",
