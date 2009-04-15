@@ -95,6 +95,8 @@ rescue Exception => e
   if debug_enabled
     puts e.message
     puts e.backtrace
+  else
+    puts "CRITICAL: #{e.message}"
   end
 end
 
