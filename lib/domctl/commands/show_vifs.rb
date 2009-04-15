@@ -6,7 +6,7 @@ module Domctl
     found = false
     def print_vifs(h, vm_label)
       h.resident_vms.each do |vm|
-        if vm.label =~ /^.*#{vm_label}.*$/
+        if vm.label =~ /^.*#{vm.label}.*$/
           found = true
           header = "[#{vm.label}]"
           puts

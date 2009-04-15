@@ -53,7 +53,7 @@ DOMCTL_COMMANDS = {
     :proc => ShowVifsCommand
   },
   :domu_info => {
-    :help => "domctl domu_info <domU>",
+    :help => "domctl domu_info <domU_name>",
     :proc => DomuInfoCommand
   },
   :dom0_info => {
