@@ -58,7 +58,7 @@ module Domctl
     def self.exit_if_not_defined(node)
       settings = Domctl::Config.cluster_nodes[node]
       if settings.nil?
-        $stderr.puts "ERROR: Xen host not defined in #{Domctl::Config.config_file}"
+        $stderr.puts "ERROR: Xen host #{node} not defined in #{Domctl::Config.config_file}"
         exit 1
       end
     end
