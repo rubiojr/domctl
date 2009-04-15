@@ -4,10 +4,10 @@ module Domctl
   # ##############
   LocateDomuCommand = Proc.new do
     domus = []
-    args = DOMCTL_COMMANDS[:locate_domu][:args]
-    if args.nil?
+    arg = DOMCTL_COMMANDS[:locate_domu][:args][0]
+    if arg.nil?
       $stderr.puts DOMCTL_COMMANDS[:locate_domu][:help]
-      exit 1
+      return
     end
     print "Searching"
     Domctl::Config.cluster_nodes.sort.each do |node, settings|
@@ -17,14 +17,14 @@ module Domctl
         puts "Error connecting to host #{node}. Skipping."
       end
       h.resident_vms.each do |vm|
-        if vm.label =~ /^.*#{args}.*$/
+        if vm.label =~ /^.*#{arg}.*$/
           domus << "#{node}: #{vm.label}" 
         end
       end
       print '.'
     end
     puts
-    puts " Not found." if domus.empty?
+    puts "DomU matching '#{arg}' not found." if domus.empty?
     domus.each { |d| puts d }
   end
 end
