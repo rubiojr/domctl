@@ -25,7 +25,7 @@ include Domctl
 
 DOMCTL_COMMANDS = {
   :cpu_utilisation => {
-    :help => "domctl cpu_utilisation\n",
+    :help => CpuUtilisationHelp,
     :proc => CpuUtilisationCommand
   },
   :farm_info => {
