@@ -4,25 +4,24 @@ module Domctl
   # ##############
   LocateDomuCommand = Proc.new do
     domus = []
+    threads = []
     arg = DOMCTL_COMMANDS[:locate_domu][:args][0]
     if arg.nil?
       $stderr.puts DOMCTL_COMMANDS[:locate_domu][:help]
-      return
+      exit 1
     end
     print "Searching"
-    Domctl::Config.cluster_nodes.sort.each do |node, settings|
-      begin
-        h = Pangea::Host.connect(settings['url'], settings['username'], settings['password'])
-      rescue Exception
-        puts "Error connecting to host #{node}. Skipping."
-      end
-      h.resident_vms.each do |vm|
-        if vm.label =~ /^.*#{arg}.*$/
-          domus << "#{node}: #{vm.label}" 
+    Domctl::Config.each_host do |h|
+      print '.'
+      threads << Thread.new do 
+        h.resident_vms.each do |vm|
+          if vm.label =~ /^.*#{arg}.*$/
+            domus << "#{h.label}: #{vm.label}" 
+          end
         end
       end
-      print '.'
     end
+    threads.each { |t| t.join }
     puts
     puts "DomU matching '#{arg}' not found." if domus.empty?
     domus.each { |d| puts d }
