@@ -5,6 +5,15 @@ require 'term/ansicolor'
 gem 'pangea', '~> 0.1'
 require 'pangea'
 
+debug_enabled = false
+
+debug = ! ARGV.index('--debug').nil?
+if debug
+  puts 'Debugging enabled.'
+  debug_enabled = true
+  ARGV.delete('--debug')
+end
+
 begin
   require "#{File.join(File.dirname(__FILE__), '../lib/domctl.rb')}"
 rescue
@@ -68,6 +77,8 @@ DOMCTL_COMMANDS = {
   }
 }
 
+trap("INT") { $stderr.puts "\nAborting."; exit }
+
 Domctl::Config.validate
 command = ARGV.shift
 if command.nil? or DOMCTL_COMMANDS[command.to_sym].nil?
@@ -78,9 +89,12 @@ begin
   args = ARGV
   DOMCTL_COMMANDS[command.to_sym][:args] = args
   DOMCTL_COMMANDS[command.to_sym][:proc].call
+rescue SystemExit => e
+  $stderr.puts "Aborting."
 rescue Exception => e
-  if not e.is_a? SystemExit
+  if debug_enabled
     puts e.message
     puts e.backtrace
   end
 end
+

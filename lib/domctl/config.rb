@@ -49,7 +49,7 @@ module Domctl
         begin
           h = Pangea::Host.connect(settings['url'], settings['username'], settings['password'])
           yield h
-        rescue Exception
+        rescue Pangea::LinkConnectError => e
           puts "Error connecting to host #{node}. Skipping."
         end
       end
