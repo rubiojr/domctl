@@ -2,6 +2,20 @@ module Domctl
   ################
   # locate_domu 
   # ##############
+LocateDomuHelp = <<-HERE
+
+domctl locate_domu <domU name>
+
+Find the domUs matching <domU name>
+
+EXAMPLES
+
+domctl locate_domu test-vm
+
+"Locates a DomU named test-vm."
+
+HERE
+
   LocateDomuCommand = Proc.new do
     domus = []
     threads = []

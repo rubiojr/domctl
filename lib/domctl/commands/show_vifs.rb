@@ -2,20 +2,38 @@ module Domctl
   ################
   # show_vifs
   # ##############
+
+ShowVifsHelp = <<-HERE
+
+domctl show_vifs <[dom0_name:]domU_name>
+
+Print the virtual interfaces from the given domU
+
+EXAMPLES
+
+1. domctl show_vifs vm-test
+
+"Print the VIFs found in vm-test (if vm-test exists)"
+
+1. domctl show_vifs xen0:vm-test
+
+"Print the VIFs found in vm-test, but look for vm-test in xen0 host only."
+HERE
+
   ShowVifsCommand = Proc.new do
     def print_vifs(h, vm_label)
       buffer = ''
       h.resident_vms.each do |vm|
         if vm.label =~ /^.*#{vm_label}.*$/
-          header = "\n\n[#{vm.label}]\n"
+          header = "\n[#{vm.label}]\n"
           buffer << header
           buffer << ("-" * header.size)
           vm.vifs.each do |vif|
             buffer << "\nDevice:      #{vif.device} **\n"
             buffer << "MAC Address: #{vif.mac}\n"
             metrics = vif.metrics
-            buffer << "KBits/s IN:  #{metrics.io_read_kbs}\n"
-            buffer << "KBits/s OUT: #{metrics.io_write_kbs}"
+            buffer << "KBits/s IN:  %.3f\n" % metrics.io_read_kbs
+            buffer << "KBits/s OUT: %.3f\n" % metrics.io_write_kbs
           end
         end
       end
@@ -31,7 +49,7 @@ module Domctl
       Domctl::Config.exit_if_not_defined(host)
       settings = Domctl::Config.cluster_nodes[host]
       h = Pangea::Host.connect(settings['url'], settings['username'], settings['password'])
-      print_vifs(h, domu)
+      puts print_vifs(h, domu)
     else
       threads = []
       print "Searching"

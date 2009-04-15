@@ -1,4 +1,12 @@
 module Domctl
+OldestDomusHelp = <<-HELP
+
+Usage: domctl oldest_domus
+
+Print the oldest domUs (the first 10 created).
+
+HELP
+
   OldestDomusCommand = Proc.new do
     oldest = []
     threads = []

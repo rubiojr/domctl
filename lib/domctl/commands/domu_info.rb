@@ -2,6 +2,26 @@ module Domctl
   ################
   # domu_info
   ################
+
+DomuInfoHelp = <<-HERE
+
+domctl domu_info <domu_name>
+
+Print some info from the given domU. domu_name can be the full name
+or the partial name from a running domU.
+
+EXAMPLES
+
+1. domctl domu_info vm-test
+
+"Print info from vm-test"
+
+2. domctl domu_info xen0:vm-test
+
+"Print info from vm-test, but match only domUs resident in xen0 host"
+
+HERE
+
   DomuInfoCommand = Proc.new do
     def print_vm_status(h, vm_label)
       h.resident_vms.each do |vm|

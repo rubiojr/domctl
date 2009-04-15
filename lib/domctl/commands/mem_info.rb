@@ -2,6 +2,24 @@ module Domctl
   ################
   # mem_info
   # ##############
+
+MemInfoHelp = <<-HERE
+
+Usage: domctl mem_info [dom0_name]
+
+dom0_name is optional. If dom0_name is supplied, it only prints the memory info from the given host.
+
+EXAMPLES
+
+1. domctl mem_info xen0
+
+"Print the memory info from xen0"
+
+2. domctl mem_info
+
+"Print the memory info from all the hosts defined in domctl config file"
+HERE
+
   MemInfoCommand = Proc.new do
     node = DOMCTL_COMMANDS[:mem_info][:args][0]
     threads = []
@@ -20,6 +38,7 @@ module Domctl
       puts
       puts buffer
     else
+      Domctl::Config.exit_if_not_defined(node)
       settings = Domctl::Config.cluster_nodes[node]
       begin
         h = Pangea::Host.connect(settings['url'], settings['username'], settings['password'])

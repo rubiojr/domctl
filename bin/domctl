@@ -25,47 +25,47 @@ include Domctl
 
 DOMCTL_COMMANDS = {
   :cpu_utilisation => {
-    :help => "domctl cpu_utilisation",
+    :help => "domctl cpu_utilisation\n",
     :proc => CpuUtilisationCommand
   },
   :farm_info => {
-    :help => "domctl farm_info",
+    :help => FarmInfoHelp,
     :proc => FarmInfoCommand
   },
   :mem_info => {
-    :help => "domctl mem_info [host]",
+    :help => MemInfoHelp,
     :proc => MemInfoCommand
   },
   :locate_domu => {
-    :help => "domctl locate_domu <domU name>",
+    :help => LocateDomuHelp,
     :proc => LocateDomuCommand
   },
   :list_running => {
-    :help => "domctl list_running <dom0_name|all>",
+    :help => ListRunningHelp,
     :proc => ListRunningCommand
   },
   :cluster_nodes => {
-    :help => "domctl cluster_nodes",
+    :help => ClusterNodesHelp,
     :proc => ClusterNodesCommand
   },
   :show_vifs => {
-    :help => "domctl show_vifs <[dom0_name:]domU_name>",
+    :help => ShowVifsHelp,
     :proc => ShowVifsCommand
   },
   :domu_info => {
-    :help => "domctl domu_info <domU_name>",
+    :help => DomuInfoHelp,
     :proc => DomuInfoCommand
   },
   :dom0_info => {
-    :help => "domctl dom0_info <dom0_name>",
+    :help => Dom0InfoHelp,
     :proc => Dom0InfoCommand
   },
   :recent_domus => {
-    :help => "domctl recent_domus",
+    :help => RecentDomusHelp,
     :proc => RecentDomusCommand
   },
   :oldest_domus => {
-    :help => "domctl oldest_domus",
+    :help => OldestDomusHelp,
     :proc => OldestDomusCommand
   },
   :version => {
@@ -82,8 +82,9 @@ trap("INT") { $stderr.puts "\nAborting."; exit }
 Domctl::Config.validate
 command = ARGV.shift
 if command.nil? or DOMCTL_COMMANDS[command.to_sym].nil?
-  HelpCommand.call 
-  exit 1
+ DOMCTL_COMMANDS[:help][:args] = []
+ HelpCommand.call 
+ exit 1
 end
 begin
   args = ARGV

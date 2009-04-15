@@ -2,6 +2,24 @@ module Domctl
   ################
   # list_running
   # ##############
+ListRunningHelp = <<-HERE
+
+Usage: domctl list_running <dom0_name|all>
+
+Lists the running domUs in a given host (in every defined host if 'all' parameter is used instead of the dom0 name)
+
+EXAMPLES
+
+1. domctl list_running xen0
+
+"List all the domUs running in xen0"
+
+2. domctl list_running all
+
+"List all the domUs in every host defined in #{Domctl::Config.config_file}"
+
+HERE
+
   ListRunningCommand = Proc.new do
     def print_running(h)
       buffer = "\n"

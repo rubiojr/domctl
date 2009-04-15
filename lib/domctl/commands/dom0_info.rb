@@ -2,6 +2,20 @@ module Domctl
   ################
   # dom0_info
   ################
+
+Dom0InfoHelp = <<-HERE
+
+domctl dom0_info <dom0_name>
+
+Print some info from the given dom0
+
+EXAMPLES
+
+1. domctl dom0_info xen0
+
+"Print info from the xen0 host"
+
+HERE
   Dom0InfoCommand = Proc.new do
     def print_dom0_info(h)
       puts "Label:             #{h.label}"
