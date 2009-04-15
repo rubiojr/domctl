@@ -49,7 +49,7 @@ DOMCTL_COMMANDS = {
     :proc => ClusterNodesCommand
   },
   :show_vifs => {
-    :help => "domctl show_vifs <domU>",
+    :help => "domctl show_vifs <[dom0_name:]domU_name>",
     :proc => ShowVifsCommand
   },
   :domu_info => {
