@@ -5,7 +5,7 @@ module Domctl
 
 Dom0InfoHelp = <<-HERE
 
-domctl dom0_info <dom0_name>
+Usage: domctl dom0_info <dom0_name>
 
 Print some info from the given dom0
 

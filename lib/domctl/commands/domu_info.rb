@@ -5,7 +5,7 @@ module Domctl
 
 DomuInfoHelp = <<-HERE
 
-domctl domu_info <domu_name>
+Usage: domctl domu_info <domu_name>
 
 Print some info from the given domU. domu_name can be the full name
 or the partial name from a running domU.

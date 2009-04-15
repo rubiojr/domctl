@@ -5,7 +5,7 @@ module Domctl
 
 ShowVifsHelp = <<-HERE
 
-domctl show_vifs <[dom0_name:]domU_name>
+Usage: domctl show_vifs <[dom0_name:]domU_name>
 
 Print the virtual interfaces from the given domU
 

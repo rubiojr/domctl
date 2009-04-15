@@ -5,7 +5,7 @@ module Domctl
 
 FarmInfoHelp = <<-HELP
 
-domctl farm_info
+Usage: domctl farm_info
 
 Print info from all the hosts defined in the config file:
 - Memory Free

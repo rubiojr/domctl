@@ -2,7 +2,7 @@ module Domctl
 
 RecentDomusHelp = <<-HELP
 
-domctl recent_domus
+Usage: domctl recent_domus
 
 Print the most recent domUs created (the last 10 created).
 

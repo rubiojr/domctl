@@ -4,7 +4,7 @@ module Domctl
   # ##############
 LocateDomuHelp = <<-HERE
 
-domctl locate_domu <domU name>
+Usage: domctl locate_domu <domU name>
 
 Find the domUs matching <domU name>
 
