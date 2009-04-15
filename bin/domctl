@@ -57,7 +57,7 @@ DOMCTL_COMMANDS = {
     :proc => DomuInfoCommand
   },
   :dom0_info => {
-    :help => "domctl dom0_info <dom0>",
+    :help => "domctl dom0_info <dom0_name>",
     :proc => Dom0InfoCommand
   },
   :recent_domus => {
