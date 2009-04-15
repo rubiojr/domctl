@@ -17,7 +17,7 @@ It also serves as an example of Pangea xen-api ruby implementation (http://pange
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+* See the getting started guide: http://www.xen-fu.org/blog/?p=86
 
 == REQUIREMENTS:
 

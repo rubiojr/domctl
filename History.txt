@@ -9,3 +9,11 @@
 
 * lots of new commands implemented
 * bug fixes
+
+=== 0.3 / 2009-04-15
+
+* all the commands are now threaded and faster
+* bug fixes
+* help docs/command improved
+* code cleanup and refactoring
+* better error handling
