@@ -3,29 +3,28 @@ module Domctl
   # show_vifs
   # ##############
   ShowVifsCommand = Proc.new do
-    found = false
     def print_vifs(h, vm_label)
+      buffer = ''
       h.resident_vms.each do |vm|
-        if vm.label =~ /^.*#{vm.label}.*$/
-          found = true
-          header = "[#{vm.label}]"
-          puts
-          puts header
-          puts "-" * header.size
+        if vm.label =~ /^.*#{vm_label}.*$/
+          header = "\n\n[#{vm.label}]\n"
+          buffer << header
+          buffer << ("-" * header.size)
           vm.vifs.each do |vif|
-            puts "Device:      #{vif.device}"
-            puts "MAC Address: #{vif.mac}"
+            buffer << "\nDevice:      #{vif.device} **\n"
+            buffer << "MAC Address: #{vif.mac}\n"
             metrics = vif.metrics
-            puts "KBits/s IN:  #{metrics.io_read_kbs}"
-            puts "KBits/s OUT: #{metrics.io_write_kbs}"
+            buffer << "KBits/s IN:  #{metrics.io_read_kbs}\n"
+            buffer << "KBits/s OUT: #{metrics.io_write_kbs}"
           end
         end
       end
+      buffer
     end
     domu_name = DOMCTL_COMMANDS[:show_vifs][:args][0]
     if domu_name.nil?
       $stderr.puts DOMCTL_COMMANDS[:show_vifs][:help]
-      return
+      exit 1
     end
     if domu_name =~ /^.*:.*$/
       host, domu = domu_name.split(':')
@@ -33,13 +32,19 @@ module Domctl
       settings = Domctl::Config.cluster_nodes[host]
       h = Pangea::Host.connect(settings['url'], settings['username'], settings['password'])
       print_vifs(h, domu)
-      puts "DomU #{domu} not found in #{host}" if not found
     else
-      puts "Searching..."
+      threads = []
+      print "Searching"
+      buffer = ''
       Domctl::Config.each_host do |h|
-        print_vifs(h, domu_name)
+        print '.'
+        threads << Thread.new do
+          buffer << print_vifs(h, domu_name)
+        end
       end
-      puts "#{args} not found." if not found
+      threads.each { |t| t.join }
+      puts ' done.'
+      puts buffer if not buffer.empty?
     end
   end
 end
